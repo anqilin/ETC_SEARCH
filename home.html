@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ETC服务网点查询</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="gride.css" />
+    <script type="text/javascript" src="./js/jquery-1.8.3.min.js"></script>
+
+    <meta name="format-detection" content="telephone=no, email=no">
+    <script type="text/javascript" src="https://tajs.qq.com/stats?sId=37342703" charset="UTF-8"></script>
+    <link rel="stylesheet" href="css/frozenui.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+
+
+    <style type="text/css">
+        #wrap{
+            display: flex;
+        }
+        .ui-img-banner{
+            width: 100%;
+            padding-top: 36%;
+        }
+
+    </style>
+
+
+</head>
+<body>
+   <!-- <div style="width: 100%;padding-top: 36%;margin-top: 0px">
+        <img src="pic/head.jpg" style="width: 100%;height: 100%"/>
+    </div>-->
+    <div class="ui-img-banner">
+        <span style="background-image:url(pic/head.jpg);background-size: 100% 100%"></span>
+    </div>
+   <div  onclick="go_index(0)" style="margin-top:10px;margin-left: 20px;margin-right: 20px;
+            background-image: url(pic/etcban.jpg); background-size: 100% 100% " class="weui-cells ">
+       <div class="weui-cell" style="margin-top: 20px;margin-bottom: 20px">
+
+           <div class="weui-cell__hd"><img src="pic/etcico1.png" style="width: 50px;height: 50px"></div>
+           <div class="weui-cell__bd">
+               <p style="font-size: 20px"><strong>ETC安装</strong></p>
+               <p style="font-size:16px; padding-left:2px"><font color="#9C9C9C">新申请安装ETC</font></p>
+           </div>
+
+       </div>
+   </div>
+
+   <div onclick="go_index(1)" style="margin-top:10px;margin-left: 20px;margin-right: 20px;
+            background-image: url(pic/etcban.jpg); background-size: 100% 100% " class="weui-cells ">
+       <div class="weui-cell" style="margin-top: 20px;margin-bottom: 20px">
+
+           <div class="weui-cell__hd"><img src="pic/etcico2.png" style="width: 50px;height: 50px"></div>
+           <div class="weui-cell__bd">
+               <p style="font-size: 20px"><strong>ETC充值</strong></p>
+               <p style="font-size:16px; padding-left:2px"><font color="#9C9C9C">自助充值/人工充值</font></p>
+           </div>
+
+       </div>
+   </div>
+
+   <div onclick="go_index(2)" style="margin-top:10px;margin-left: 20px;margin-right: 20px;
+            background-image: url(pic/etcban.jpg); background-size: 100% 100% " class="weui-cells ">
+       <div class="weui-cell" style="margin-top: 20px;margin-bottom: 20px">
+
+           <div class="weui-cell__hd"><img src="pic/etcico3.png" style="width: 50px;height: 50px"></div>
+           <div class="weui-cell__bd">
+               <p style="font-size: 20px"><strong>信息变更</strong></p>
+               <p style="font-size:16px; padding-left:2px"><font color="#9C9C9C">卡类变更/信息变更</font></p>
+           </div>
+
+       </div>
+   </div>
+
+   <div onclick="go_index(3)" style="margin-top:10px;margin-left: 20px;margin-right: 20px;
+            background-image: url(pic/etcban.jpg); background-size: 100% 100% " class="weui-cells ">
+       <div class="weui-cell" style="margin-top: 20px;margin-bottom: 20px">
+
+           <div class="weui-cell__hd"><img src="pic/etcico4.png" style="width: 50px;height: 50px"></div>
+           <div class="weui-cell__bd">
+               <p style="font-size: 20px"><strong>ETC维修</strong></p>
+               <p style="font-size:16px; padding-left:2px"><font color="#9C9C9C">ETC维修服务</font></p>
+           </div>
+
+       </div>
+   </div>
+   <div onclick="go_index(4)" style="margin-top:10px;margin-left: 20px;margin-right: 20px;
+            background-image: url(pic/etcban.jpg); background-size: 100% 100% " class="weui-cells ">
+       <div class="weui-cell" style="margin-top: 20px;margin-bottom: 20px">
+
+           <div class="weui-cell__hd"><img src="pic/etcico5.png" style="width: 50px;height: 50px"></div>
+           <div class="weui-cell__bd">
+               <p style="font-size: 20px"><strong>其它业务</strong></p>
+               <p style="font-size:16px; padding-left:2px"><font color="#9C9C9C">注销/退资/挂失/补办</font></p>
+           </div>
+
+       </div>
+   </div>
+   <script type="text/javascript">
+       function go_index(type) {
+           sessionStorage.setItem("etc_type",type);
+           window.location.href='index.html';
+       }
+
+   </script>
+
+
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<!--<script type="text/javascript" src="./js/jquery-weui.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+</body>
+</html>
