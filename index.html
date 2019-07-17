@@ -394,6 +394,10 @@
         <i class="weui-loading"></i>
         <span  class="weui-loadmore__tips">正在加载</span>
     </div>
+    <div id="no_find" style="display: none;margin-top: 10px">
+        <p  style="font-size: 14px"><center>没有找到对应服务网点</center></p>
+
+    </div>
 	
 	
 	
@@ -639,7 +643,7 @@
                 get_location_data();
                 return;
 			}
-            /*if(jsonstring!=null){
+           /* if(jsonstring!=null){
                 //alert("加载已有数据:"+jsonstring);
                 reload_json();
                 return;
@@ -694,6 +698,13 @@
                                 }else if(json.length<10) {
                                     document.getElementById("load_more").style.display="none"
                                     loading=true;
+                                }
+                                if(json.length==0){
+                                    document.getElementById("no_find").style.display="block"
+
+                                }else {
+                                    document.getElementById("no_find").style.display="none"
+
                                 }
                                 currentNum=0;
                                 myjson = json;
@@ -1022,11 +1033,18 @@
                                 $.hideLoading();
                                 var json = eval(data); //数组
                                 if(json.length==10){
-                                    document.getElementById("load_more").style.display="block"
+                                    document.getElementById("load_more").style.display="none"
                                     loading=false
                                 }else if(json.length<10) {
                                     document.getElementById("load_more").style.display="none"
                                     loading=true;
+                                }
+                                if(json.length==0){
+                                    document.getElementById("no_find").style.display="block"
+
+                                }else {
+                                    document.getElementById("no_find").style.display="none"
+
                                 }
                                 currentNum=0;
                                 myjson = json;
@@ -1283,6 +1301,7 @@
                                         document.getElementById("load_more").style.display="none"
                                         loading=true;
                                     }
+
                                    // myjson = json;
                                     myjson=myjson.concat(json);
                                     var tt = "";
@@ -1391,6 +1410,8 @@
         })
 		function reload_json() {
             myjson=JSON.parse(jsonstring);
+            alert(jsonstring);
+
             if((myjson.length%10)==0){
                 document.getElementById("load_more").style.display="block"
                 loading=false
@@ -1410,7 +1431,14 @@
             var mylongitude = sessionStorage.getItem("lng");
             var mylatitude = sessionStorage.getItem("lat");
             var start = new LngLat(mylongitude, mylatitude);
-            for (var i = 0; i < myjson.length; i++) {
+            if(myjson.length==0){
+                document.getElementById("no_find").style.display="block"
+
+            }else {
+                document.getElementById("no_find").style.display="none"
+
+            }
+           /* for (var i = 0; i < myjson.length; i++) {
                 var html = "";
                 //循环获取数据
 
@@ -1425,6 +1453,8 @@
                 var lyk = item.lvyouka;
                 var buss= item.buss;
                 end = new LngLat(lng, lat);
+                alert(i+":"+JSON.stringify(item));
+                alert(buss);
                 // var distance = calculateLineDistance(start, end);
 
                 // distance = Math.floor(distance);
@@ -1486,7 +1516,84 @@
                 $("#cell2").append(html);
 
 
-            }
+            }*/
+            $.each(myjson, function (index) {
+                var html = "";
+                //循环获取数据
+                //alert(JSON.stringify(json[index]))
+                var item = myjson[index];
+                var stype = item.stype;
+                var site = item.site;
+                var addr = item.addr;
+                var lng = item.lng;
+                var lat = item.lat;
+                var jtk = item.jiaotongka;
+                var htk = item.hutongka;
+                var lyk = item.lvyouka;
+                var buss= item.buss;
+                end = new LngLat(lng, lat);
+                //var distance = calculateLineDistance(start, end);
+
+                //distance = Math.floor(distance);
+                var distance=item.juli;
+                html += '<div  class="weui-cell">';
+                html += '<div  class="weui-cell__bd">';
+                html += '<p>' + stype + '-' + site + '</p>';
+                html += '<p style="font-size:12px; padding-left:2px"><font color="#000000">' + buss + '</font></p>';
+                html += '<p style="font-size:12px; padding-left:2px"><font color="#a4a4a4">' + addr + '</font></p>';
+                html += '</div>'
+                html += '<div class="weui-cell__ft">';
+                var flag1=0;
+                var flag2=0;
+                var flag3=0;
+                var flag4=0;
+                var flag5=0;
+
+                if (htk.length > 0) {
+                    for(var i=0;i<htk.length;i++){
+                        if(htk[i]=="安装办理"){
+                            flag1=1;
+
+                        }else if(htk[i]=="充值服务"||htk[i]=="自助充值"){
+                            flag2=1;
+
+                        }else if(htk[i]=="变更服务"){
+                            flag3=1;
+
+                        }else if(htk[i]=="维修服务"){
+                            flag4=1;
+
+                        }else if(htk[i]=="注销退资"||htk[i]=="挂失补办"){
+                            flag5=1;
+
+                        }
+
+                    }
+                    if(flag1==1){
+                        html += '<img style="margin-left: 3px" height="20px" width="38px" src="pic/etctab1.png">';
+                    }
+                    if(flag2==1){
+                        html += '<img style="margin-left: 3px" height="20px" width="38px" src="pic/etctab2.png">';
+                    }
+                    if(flag3==1){
+                        html += '<img style="margin-left: 3px" height="20px" width="38px" src="pic/etctab3.png">';
+                    }
+                    if(flag4==1){
+                        html += '<img style="margin-left: 3px" height="20px" width="38px" src="pic/etctab4.png">';
+                    }
+                    if(flag5==1){
+                        html += '<img style="margin-left: 3px" height="20px" width="38px" src="pic/etctab5.png">';
+                    }
+
+                }
+
+
+                html += '<p style="color: #a4a4a4">' + distance + '米</p>';
+                html += '</div>';
+                html += '</div>';
+                $("#cell2").append(html);
+
+            });
             var items = $("#cell2").find(".weui-cell")
             for (var i = 0; i < items.length; i++) {
                 var a = items[i];
@@ -1578,6 +1685,13 @@
                                 }else if(json.length<10) {
                                     document.getElementById("load_more").style.display="none"
                                     loading=true;
+                                }
+                                if(json.length==0){
+                                    document.getElementById("no_find").style.display="block"
+
+                                }else {
+                                    document.getElementById("no_find").style.display="none"
+
                                 }
                                 currentNum=0;
                                 myjson = json;
