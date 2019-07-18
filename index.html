@@ -22,9 +22,16 @@
 		}
 
 
-
-
 	</style>
+	<script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?86effe8d4e16b2dc3e367f8015992b58";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+	</script>
 
 
 </head>
@@ -412,8 +419,8 @@
 
 
 		var myjson;
-	    var base_url="https://online.sptcc.com:8445/handapp_app/MerchantSearchServlet?isFW=3";
-	    var base_url2="https://online.sptcc.com:8445/handapp_app/MerchantSearchServlet?isFW=3";
+	    var base_url="https://online.sptcc.com:8443/handapp_app/MerchantSearchServlet?isFW=3";
+	    var base_url2="https://online.sptcc.com:8443/handapp_app/MerchantSearchServlet?isFW=3";
 	    var card_type="&"+"cardType=";
 		var card_jtk_staues=0;
 		var card_htk_staues=1;
@@ -626,6 +633,7 @@
 				search_point2();
 		}
 		function goto_detail(code) {
+		    sessionStorage.setItem("etc_type",null);
 		    sessionStorage.setItem("myjson",JSON.stringify(myjson));
            	window.location.href='point_detail.html';
 
@@ -648,6 +656,11 @@
                 reload_json();
                 return;
 			}*/
+            if(etc_type!=null){
+                search_point(etc_type);
+                return;
+
+            }
 
             var mylongitude;
             var mylatitude;
